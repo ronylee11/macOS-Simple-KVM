@@ -7,12 +7,12 @@ OVMF=$VMDIR/firmware
 #export QEMU_AUDIO_DRV=pa
 #QEMU_AUDIO_DRV=pa
 
-qemu-system-x86_64 \
+args=(
     -nodefaults \
     -enable-kvm \
     -m 4G \
     -machine q35,accel=kvm \
-    -smp 8,cores=4 \
+    -smp 4 \
     -cpu Penryn,vendor=GenuineIntel,kvm=on,+sse3,+sse4.2,+aes,+xsave,+avx,+xsaveopt,+xsavec,+xgetbv1,+avx2,+bmi2,+smep,+bmi1,+fma,+movbe,+invtsc \
     -device isa-applesmc,osk="$OSK" \
     -smbios type=2 \
@@ -30,9 +30,12 @@ qemu-system-x86_64 \
     -device ich9-ahci,id=sata \
     -drive id=ESP,if=none,format=qcow2,file="$VMDIR"/ESP.qcow2 \
     -device ide-hd,bus=sata.2,drive=ESP \
-    -drive id=InstallMedia,format=raw,if=none,file="$VMDIR"/BaseSystem.img \
-    -device ide-hd,bus=sata.3,drive=InstallMedia \
     -drive id=SystemDisk,if=none,file="$VMDIR"/MyDisk.qcow2 \
-    -device ide-hd,bus=sata.4,drive=SystemDisk \
+    -device ide-hd,bus=sata.3,drive=SystemDisk \
+#    -drive id=InstallMedia,format=raw,if=none,file="$VMDIR"/BaseSystem.img \
+#    -device ide-hd,bus=sata.4,drive=InstallMedia \
     -device usb-host,vendorid=0x05ac,productid=0x12ab,guest-reset=false,id=ipad \
     -device usb-host,vendorid=0x05ac,productid=0x12a8,guest-reset=false,id=iphone \
+)
+
+qemu-system-x86_64 "${args[@]}"
