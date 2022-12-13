@@ -21,7 +21,8 @@ args=(
     -drive if=pflash,format=raw,readonly=on,file="$OVMF/OVMF_CODE.fd" \
     -drive if=pflash,format=raw,file="$OVMF/OVMF_VARS-1024x768.fd" \
     -device virtio-vga-gl \
-    -display sdl,gl=on \
+    -display gtk,gl=on \
+    #-display spice-app \
     -audiodev pa,id=pa,server="/run/user/$(id -u)/pulse/native" \
     -device ich9-intel-hda -device hda-output,audiodev=pa \
     -usb -device usb-kbd -device usb-mouse \
@@ -32,8 +33,8 @@ args=(
     -device ide-hd,bus=sata.2,drive=ESP \
     -drive id=SystemDisk,if=none,file="$VMDIR"/MyDisk.qcow2 \
     -device ide-hd,bus=sata.3,drive=SystemDisk \
-#    -drive id=InstallMedia,format=raw,if=none,file="$VMDIR"/BaseSystem.img \
-#    -device ide-hd,bus=sata.4,drive=InstallMedia \
+    -drive id=InstallMedia,format=raw,if=none,file="$VMDIR"/BaseSystem.img \
+    -device ide-hd,bus=sata.4,drive=InstallMedia \
     -device usb-host,vendorid=0x05ac,productid=0x12ab,guest-reset=false,id=ipad \
     -device usb-host,vendorid=0x05ac,productid=0x12a8,guest-reset=false,id=iphone \
 )

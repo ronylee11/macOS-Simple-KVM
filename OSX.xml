@@ -5,9 +5,9 @@
   <currentMemory unit='KiB'>2097152</currentMemory>
   <vcpu placement='static'>4</vcpu>
   <os>
-    <type arch='x86_64' machine='pc-q35-7.0'>hvm</type>
-    <loader readonly='yes' type='pflash'>/home/cleff/macOS-Simple-KVM/firmware/OVMF_CODE.fd</loader>
-    <nvram>/home/cleff/macOS-Simple-KVM/firmware/OVMF_VARS-1024x768.fd</nvram>
+    <type arch='x86_64' machine='pc-q35-7.1'>hvm</type>
+    <loader readonly='yes' type='pflash'>/home/cleff/.github/macOS-Simple-KVM/firmware/OVMF_CODE.fd</loader>
+    <nvram>/home/cleff/.github/macOS-Simple-KVM/firmware/OVMF_VARS-1024x768.fd</nvram>
     <boot dev='hd'/>
   </os>
   <features>
@@ -34,13 +34,13 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/home/cleff/macOS-Simple-KVM/ESP.qcow2'/>
+      <source file='/home/cleff/.github/macOS-Simple-KVM/ESP.qcow2'/>
       <target dev='sda' bus='sata'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
-      <source file='/home/cleff/macOS-Simple-KVM/BaseSystem.img'/>
+      <source file='/home/cleff/.github/macOS-Simple-KVM/BaseSystem.img'/>
       <target dev='sdb' bus='sata'/>
       <address type='drive' controller='0' bus='0' target='0' unit='1'/>
     </disk>
